@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--파일이 종류가 mybatis용-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//
+              EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mybatis를 사용할 DAO패키지를 지정-->
+
+<mapper namespace="com.daum.daumboard.DAO.BoardDAO">
+    <select id="selectAllBoard" resultType="BoardVO">
+                <![CDATA[
+        SELECT * FROM board_tbl
+        ]]>
+        </select>
+
+    <insert id="insertBoard">
+            <![CDATA[
+        INSERT INTO board_tbl(subject,bcontent, name)
+        VALUES (#{subject}, #{bcontent}, #{name})
+        ]]>
+        </insert>
+
+    <select id="selectUpdate" resultType="BoardVO"><!-- 수정할 해당번의자료를 읽어온다-->
+        <![CDATA[
+        select *
+        from board_tbl
+        where no = #{no}
+        ]]>
+    </select>
+
+    <update id="updateBoard">
+            <![CDATA[
+        UPDATE board_tbl
+        SET
+            subject=#{subject},
+            bcontent=#{bcontent},
+            name = #{name}
+        WHERE no = #{no}
+        ]]>
+        </update>
+
+    <delete id="deleteBoard">
+        <![CDATA[
+        DELETE
+        FROM board_tbl
+        WHERE no = #{no}
+        ]]>
+    </delete>
+
+</mapper>
